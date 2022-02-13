@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WonderKid.DAL", "WonderKid.DAL\WonderKid.DAL.csproj", "{378B5D3B-5A61-4E01-8D70-B2CBFD649680}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WonderKid.DAL", "WonderKid.DAL\WonderKid.DAL.csproj", "{378B5D3B-5A61-4E01-8D70-B2CBFD649680}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WonderKid.Sample", "WonderKid.Sample\WonderKid.Sample.csproj", "{E3E166BB-AE6C-4D95-8C08-7CD5A33FDA53}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WonderKid.Data", "WonderKid.Data\WonderKid.Data.csproj", "{B3AA08C4-667D-4EF8-8421-187F6CFF02F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{378B5D3B-5A61-4E01-8D70-B2CBFD649680}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{378B5D3B-5A61-4E01-8D70-B2CBFD649680}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{378B5D3B-5A61-4E01-8D70-B2CBFD649680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E166BB-AE6C-4D95-8C08-7CD5A33FDA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E166BB-AE6C-4D95-8C08-7CD5A33FDA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E166BB-AE6C-4D95-8C08-7CD5A33FDA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E166BB-AE6C-4D95-8C08-7CD5A33FDA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3AA08C4-667D-4EF8-8421-187F6CFF02F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3AA08C4-667D-4EF8-8421-187F6CFF02F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3AA08C4-667D-4EF8-8421-187F6CFF02F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3AA08C4-667D-4EF8-8421-187F6CFF02F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
