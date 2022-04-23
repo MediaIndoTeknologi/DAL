@@ -20,16 +20,16 @@ namespace WonderKid.DAL
         {
             return _context.Set<TEntity>();
         }
-        public async Task<(bool Success, string Message)> Commit()
+        public async Task<(bool Success, string Message,Exception? ex)> Commit()
         {
             try
             {
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch(Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
         public void Dispose()
@@ -51,31 +51,31 @@ namespace WonderKid.DAL
             _context.Set<TEntity>().AddRange(items);
         }
 
-        public async Task<(bool Success, string Message)> AddSave<TEntity>(TEntity entity) where TEntity : class,IEntity
+        public async Task<(bool Success, string Message,Exception? ex)> AddSave<TEntity>(TEntity entity) where TEntity : class,IEntity
         {
             try
             {
                 _context.Set<TEntity>().Add(entity);
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch(Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
 
-        public async Task<(bool Success, string Message)> AddSave<TEntity>(IEnumerable<TEntity> items) where TEntity : class,IEntity
+        public async Task<(bool Success, string Message, Exception? ex)> AddSave<TEntity>(IEnumerable<TEntity> items) where TEntity : class,IEntity
         {
             try
             {
                 _context.Set<TEntity>().AddRange(items);
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
         #endregion
@@ -91,31 +91,31 @@ namespace WonderKid.DAL
             _context.Set<TEntity>().UpdateRange(items);
         }
 
-        public async Task<(bool Success, string Message)> UpdateSave<TEntity>(TEntity entity) where TEntity :class, IEntity
+        public async Task<(bool Success, string Message, Exception? ex)> UpdateSave<TEntity>(TEntity entity) where TEntity :class, IEntity
         {
             try
             {
                 _context.Set<TEntity>().Update(entity);
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
 
-        public async Task<(bool Success, string Message)> UpdateSave<TEntity>(IEnumerable<TEntity> items) where TEntity : class, IEntity
+        public async Task<(bool Success, string Message, Exception? ex)> UpdateSave<TEntity>(IEnumerable<TEntity> items) where TEntity : class, IEntity
         {
             try
             {
                 _context.Set<TEntity>().UpdateRange(items);
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
         #endregion
@@ -131,31 +131,31 @@ namespace WonderKid.DAL
             _context.Set<TEntity>().RemoveRange(items);
         }
 
-        public async Task<(bool Success, string Message)> DeleteSave<TEntity>(TEntity entity) where TEntity :class, IEntity
+        public async Task<(bool Success, string Message, Exception? ex)> DeleteSave<TEntity>(TEntity entity) where TEntity :class, IEntity
         {
             try
             {
                 _context.Set<TEntity>().Remove(entity);
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
 
-        public async Task<(bool Success, string Message)> DeleteSave<TEntity>(IEnumerable<TEntity> items) where TEntity :class, IEntity
+        public async Task<(bool Success, string Message, Exception? ex)> DeleteSave<TEntity>(IEnumerable<TEntity> items) where TEntity :class, IEntity
         {
             try
             {
                 _context.Set<TEntity>().RemoveRange(items);
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
 
@@ -167,17 +167,17 @@ namespace WonderKid.DAL
             _context.Database.ExecuteSqlRaw(query);
         }
 
-        public async Task<(bool Success, string Message)> ExecuteQuerySave(string query)
+        public async Task<(bool Success, string Message, Exception? ex)> ExecuteQuerySave(string query)
         {
             try
             {
                 _context.Database.ExecuteSqlRaw(query);
                 await _context.SaveChangesAsync();
-                return (true, "success");
+                return (true, "success",null);
             }
             catch(Exception ex)
             {
-                return (false, ex.Message);
+                return (false, ex.Message,ex);
             }
         }
         #endregion
@@ -203,7 +203,7 @@ namespace WonderKid.DAL
         {
             return await query.AnyAsync();
         }
-        public async Task<(bool Success, string Message, List<T> Result)> ListQuery<T>(string query) where T : class
+        public async Task<(bool Success, string Message, List<T> Result, Exception? ex)> ListQuery<T>(string query) where T : class
         {
             try
             {
@@ -216,15 +216,15 @@ namespace WonderKid.DAL
                 }
 
                 var result = await db.QueryAsync<T>(query, null, commandType: CommandType.Text);
-                return (true, "success", result.ToList());
+                return (true, "success", result.ToList(),null);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message, null);
+                return (false, ex.Message, null,ex);
             }
         }
 
-        public async Task<(bool Success, string Message, T Result)> SingleQuery<T>(string query) where T : class
+        public async Task<(bool Success, string Message, T Result, Exception? ex)> SingleQuery<T>(string query) where T : class
         {
             try
             {
@@ -237,11 +237,11 @@ namespace WonderKid.DAL
                 }
 
                 var result = await db.QueryFirstOrDefaultAsync<T>(query, null, commandType: CommandType.Text);
-                return (true, "success", result);
+                return (true, "success", result,null);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message, null);
+                return (false, ex.Message, null,ex);
             }
         }
         #endregion
