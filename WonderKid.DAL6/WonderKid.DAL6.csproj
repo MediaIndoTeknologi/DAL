@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>WonderKid</Authors>
+		<Company>MIT</Company>
+		<Description>Data Action Layer for Dynamic Provider EF 6</Description>
+		<Copyright>Copyright 2022</Copyright>
+		<PackageProjectUrl>https://github.com/wonderkidengine/DAL</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/wonderkidengine/DAL</RepositoryUrl>
+		<PackageTags>DataAccessLayer DAL EntityFramework 6</PackageTags>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EntityFramework" Version="6.4.4" />
+	</ItemGroup>
+</Project>
