@@ -244,6 +244,40 @@ namespace WonderKid.DAL
                 return (false, ex.Message, null,ex);
             }
         }
+        public async Task<(bool Success, string Message, List<Dictionary<string, string>> Result, Exception ex)> DynamicQuery(string query)
+        {
+            try
+            {
+                List<Dictionary<string, string>> listDictionary = new List<Dictionary<string, string>>();
+                using(var command = _context.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.CommandType = CommandType.Text;
+                    await _context.Database.OpenConnectionAsync();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        var columns = Enumerable.Range(0, reader.FieldCount).Select(reader.GetName).ToList();
+                        columns = columns.Distinct().ToList();
+                        while (reader.Read())
+                        {
+                            var dictionary = new Dictionary<string, string>();
+                            foreach (var column in columns)
+                            {
+                                dictionary.Add(column, reader[column].ToString());
+                            }
+                            listDictionary.Add(dictionary);
+                        }
+                    }
+                    await _context.Database.CloseConnectionAsync();
+                }
+                return (true, "Success", listDictionary, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message, null, ex);
+            }
+        }
         #endregion
 
 

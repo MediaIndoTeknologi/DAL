@@ -32,6 +32,7 @@ namespace WonderKid.DAL.Interface
         Task<(bool Success, string Message, Exception? ex)> ExecuteQuerySave(string query);
         Task<(bool Success, string Message, T Result, Exception? ex)> SingleQuery<T>(string query) where T : class;
         Task<(bool Success, string Message, List<T> Result, Exception? ex)> ListQuery<T>(string query) where T : class;
+        Task<(bool Success, string Message, List<Dictionary<string, string>> Result, Exception ex)> DynamicQuery(string query);
         Task<(bool Success, string Message, Exception? ex)> Commit();
 
     }
